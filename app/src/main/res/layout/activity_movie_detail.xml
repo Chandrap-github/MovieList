@@ -35,7 +35,8 @@
                 android:background="@color/colorAccent"
                 android:fitsSystemWindows="true"
                 android:scaleType="fitXY"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                android:contentDescription="@string/toolbar_image" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -56,6 +57,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@drawable/ic_play_arrow" />
+        app:srcCompat="@drawable/ic_play_arrow"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

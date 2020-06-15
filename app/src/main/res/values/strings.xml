@@ -16,4 +16,5 @@
     <string name="movie_video_text">Video is coming soon!!!</string>
     <string name="action">Action</string>
     <string name="movie_list">Movie List</string>
+    <string name="toolbar_image">image</string>
 </resources>
