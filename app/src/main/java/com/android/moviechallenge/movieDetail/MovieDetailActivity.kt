@@ -1,6 +1,7 @@
 package com.android.moviechallenge.movieDetail
 
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.google.android.material.appbar.SubtitleCollapsingToolbarLayout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +36,7 @@ class MovieDetailActivity : AppCompatActivity() {
                 response: Response<MovieDetailResponse>
             ) {
                 if (response.body()!!.response) {
+                    progress_bar.visibility = View.GONE
                     val response = response.body()!!
                     setSupportActionBar(findViewById(R.id.toolbar))
                     val collapsingToolbar =
@@ -49,12 +52,14 @@ class MovieDetailActivity : AppCompatActivity() {
                             getString(R.string.movie_video_text),
                             Snackbar.LENGTH_LONG
                         )
-                            .setAction(getString(R.string.action), null).show()
+                            .setAction(getString(R.string.action), null)
+                            .setTextColor(resources.getColor(R.color.colorAccent))
+                            .setBackgroundTint(resources.getColor(R.color.colorPrimaryDark)).show()
                     }
                     collapsingToolbar.title = response.title
                     collapsingToolbar.subtitle = response.year
                     Glide.with(this@MovieDetailActivity).load(response.poster)
-                        .error(R.mipmap.ic_launcher)
+                        .error(R.drawable.ic_no_image_available)
                         .into(findViewById(R.id.header_image))
                     findViewById<TextView>(R.id.tv_genre).text = response.genre
                     findViewById<TextView>(R.id.tv_duration).text = response.runtime
@@ -68,6 +73,7 @@ class MovieDetailActivity : AppCompatActivity() {
                     findViewById<TextView>(R.id.tv_actor).text = response.actors
 
                 } else {
+                    progress_bar.visibility = View.GONE
                     Toast.makeText(
                         this@MovieDetailActivity,
                         getString(R.string.error_movie_detail),
@@ -78,6 +84,7 @@ class MovieDetailActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<MovieDetailResponse>, t: Throwable) {
+                progress_bar.visibility = View.GONE
                 Toast.makeText(this@MovieDetailActivity, "${t.message}", Toast.LENGTH_SHORT).show()
             }
         })

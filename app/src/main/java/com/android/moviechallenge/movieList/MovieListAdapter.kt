@@ -15,8 +15,9 @@ import com.android.moviechallenge.utils.StringUtils
 import com.bumptech.glide.Glide
 
 
-class MovieListAdapter(private val movies: List<Movie>, private val context: Context) : RecyclerView.Adapter<MoviesViewHolder>() {
+class MovieListAdapter(private val movies: MutableList<Movie>, private val context: Context) : RecyclerView.Adapter<MoviesViewHolder>() {
 
+    var movieList: ArrayList<Movie> = movies as ArrayList<Movie>
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
         return MoviesViewHolder(view)
@@ -29,6 +30,11 @@ class MovieListAdapter(private val movies: List<Movie>, private val context: Con
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         return holder.bind(movies[position], context)
     }
+
+    fun addList(list_data: List<Movie>) {
+        movieList.addAll(list_data)
+        notifyDataSetChanged()
+    }
 }
 
 class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,7 +42,7 @@ class MoviesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val title: TextView = itemView.findViewById(R.id.movie_title)
 
     fun bind(movie: Movie,context: Context) {
-        Glide.with(itemView.context).load(movie.poster).error(R.mipmap.ic_launcher).into(photo)
+        Glide.with(itemView.context).load(movie.poster).error(R.drawable.ic_no_image_available).into(photo)
         title.text = movie.title
 
         itemView.setOnClickListener {

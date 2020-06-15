@@ -3,7 +3,7 @@ package com.android.moviechallenge.api
 import com.android.moviechallenge.movieDetail.MovieDetailResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
-import retrofit2.Call;
+import retrofit2.Call
 
 import com.android.moviechallenge.movieList.model.MovieListResponse
 
@@ -14,7 +14,8 @@ interface ApiService {
     fun getMovieList(
         @Query("apikey") apikey: String,
         @Query("s") s: String,
-        @Query("type") type: String
+        @Query("type") type: String,
+        @Query("page") page: Int
     ): Call<MovieListResponse>
 
     @GET("/")
