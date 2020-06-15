@@ -23,6 +23,7 @@ class MovieListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        title = getString(R.string.movie_list)
 
         getMovieList(StringUtils.Marvel)
     }
@@ -37,6 +38,7 @@ class MovieListActivity : AppCompatActivity() {
                 getMovieList(query!!)
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 return true
             }
@@ -44,7 +46,7 @@ class MovieListActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun getMovieList(inputText: String){
+    fun getMovieList(inputText: String) {
         val request = ApiClient.buildService(ApiService::class.java)
         val call = request.getMovieList(StringUtils.API_KEY, inputText, StringUtils.MOVIE)
 
@@ -60,8 +62,12 @@ class MovieListActivity : AppCompatActivity() {
                         layoutManager = GridLayoutManager(this@MovieListActivity, 2)
                         adapter = MovieListAdapter(response.body()!!.movies, context)
                     }
-                }else{
-                    Toast.makeText(this@MovieListActivity,getString(R.string.error_movie_list),Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        this@MovieListActivity,
+                        getString(R.string.error_movie_list),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
