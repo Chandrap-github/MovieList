@@ -44,12 +44,17 @@ class MovieDetailActivity : AppCompatActivity() {
                     collapsingToolbar.setExpandedSubtitleTextAppearance(R.style.TextAppearance_MyApp_SubTitle_Expanded)
 
                     findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-                        Snackbar.make(view, getString(R.string.movie_video_text), Snackbar.LENGTH_LONG)
+                        Snackbar.make(
+                            view,
+                            getString(R.string.movie_video_text),
+                            Snackbar.LENGTH_LONG
+                        )
                             .setAction(getString(R.string.action), null).show()
                     }
                     collapsingToolbar.title = response.title
                     collapsingToolbar.subtitle = response.year
-                    Glide.with(this@MovieDetailActivity).load(response.poster).error(R.mipmap.ic_launcher)
+                    Glide.with(this@MovieDetailActivity).load(response.poster)
+                        .error(R.mipmap.ic_launcher)
                         .into(findViewById(R.id.header_image))
                     findViewById<TextView>(R.id.tv_genre).text = response.genre
                     findViewById<TextView>(R.id.tv_duration).text = response.runtime
