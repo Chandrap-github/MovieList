@@ -17,4 +17,5 @@
     <string name="action">Action</string>
     <string name="movie_list">Movie List</string>
     <string name="toolbar_image">image</string>
+    <string name="movie_image">Movie Image</string>
 </resources>

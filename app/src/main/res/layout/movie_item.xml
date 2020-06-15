@@ -7,7 +7,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="@dimen/margin_10">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -16,18 +16,19 @@
             <ImageView
                 android:id="@+id/movie_photo"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:layout_height="@dimen/image_200"
                 android:layout_centerHorizontal="true"
-                android:contentDescription="Movie Image" />
+                android:contentDescription="@string/movie_image" />
 
             <TextView
                 android:id="@+id/movie_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:layout_below="@+id/movie_photo"
-                android:layout_margin="5dp"
-                android:text="Title : "
-                android:textSize="15sp" />
+                android:layout_margin="@dimen/margin_5"
+                android:textSize="@dimen/text_size_14" />
 
 
         </RelativeLayout>
